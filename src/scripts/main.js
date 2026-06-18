@@ -151,52 +151,16 @@ gsap.utils.toArray('[data-bar]').forEach((bar) => {
   });
 });
 
-/* ---------- Experience horizontal scroll (pinned) + avatar que recorre la trayectoria ---------- */
+/* ---------- Experience horizontal scroll (pinned) ---------- */
 const hWrap = document.querySelector('[data-h-wrap]');
 const hTrack = document.querySelector('[data-h-track]');
 if (hWrap && hTrack && !reduce && window.innerWidth > 900) {
   const distance = () => hTrack.scrollWidth - hWrap.clientWidth;
-  const avatar = hWrap.querySelector('[data-exp-avatar]');
-  const fig = avatar ? avatar.querySelector('.exp__avatar-fig') : null;
-  const cards = gsap.utils.toArray('.exp__card');
-  let lastLevel = -1, curX = 0, curY = 0, init = false;
-
   gsap.to(hTrack, {
     x: () => -distance(), ease: 'none',
     scrollTrigger: {
       trigger: hWrap, start: 'top top', end: () => '+=' + distance(),
       pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1,
-      onUpdate: () => {
-        if (!avatar || !cards.length) return;
-        avatar.style.display = 'block';
-        const wrapRect = hWrap.getBoundingClientRect();
-        const centerX = wrapRect.left + wrapRect.width / 2;
-
-        // caja activa = la más centrada en pantalla
-        let best = null, bestRect = null, bestD = Infinity;
-        cards.forEach((c) => {
-          const r = c.getBoundingClientRect();
-          const d = Math.abs((r.left + r.width / 2) - centerX);
-          if (d < bestD) { bestD = d; best = c; bestRect = r; }
-        });
-
-        // se coloca en la esquina superior izquierda de la caja activa
-        const targetX = (bestRect.left - wrapRect.left) + 6;
-        const targetY = (bestRect.top - wrapRect.top) - 92;
-
-        if (!init) { curX = targetX; curY = targetY; init = true; }
-        curX += (targetX - curX) * 0.2;
-        curY += (targetY - curY) * 0.2;
-
-        const lvl = parseFloat(getComputedStyle(best).getPropertyValue('--lvl')) || 0;
-        if (lvl !== lastLevel) {
-          lastLevel = lvl;
-          if (fig) gsap.fromTo(fig, { y: -20 }, { y: 0, duration: 0.5, ease: 'bounce.out' });
-        }
-        avatar.style.left = curX + 'px';
-        avatar.style.top = curY + 'px';
-        avatar.style.transform = 'translateX(-50%)';
-      },
     },
   });
 }

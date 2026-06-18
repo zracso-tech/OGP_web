@@ -27,14 +27,6 @@ const cvf = lang === 'en'
   ? { title: 'Get my CV', sub: 'Fill in the form and I’ll email you my CV personally — that way I can verify your address.', first: 'First name', last: 'Last name', company: 'Company', email: 'Work email', consent: 'I agree to be contacted by Óscar González.', submit: 'Request the CV', sending: 'Sending…', ok: 'Thank you! I’ll email you my CV shortly.', err: 'Something went wrong. Please try again in a moment.' }
   : { title: 'Recibe mi CV', sub: 'Rellena el formulario y te enviaré mi CV personalmente por correo — así verifico que tu dirección es real.', first: 'Nombre', last: 'Apellidos', company: 'Empresa', email: 'Correo profesional', consent: 'Acepto ser contactado por Óscar González.', submit: 'Solicitar el CV', sending: 'Enviando…', ok: '¡Gracias! Te enviaré mi CV a tu correo en breve.', err: 'Algo ha fallado. Inténtalo de nuevo en un momento.' };
 
-// Trayectoria: asigna un "escalón" (level) que desciende cada vez que cambia la empresa
-let _lvl = 0; let _prev = null;
-const expItems = t.experience.items.map((it) => {
-  if (_prev !== null && it.company !== _prev) _lvl++;
-  _prev = it.company;
-  return { ...it, level: _lvl };
-});
-
 const calEmbed = `
 (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
 Cal("init", "ogp", { origin: "https://cal.com" });
@@ -181,34 +173,35 @@ Cal.ns.ogp("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#1b
     <p class="lead">{t.experience.lead}</p>
   </div>
   <div class="exp__wrap" data-h-wrap>
-    <div class="exp__avatar" data-exp-avatar aria-hidden="true">
-      <span class="exp__avatar-fig"></span>
-      <span class="exp__avatar-base"></span>
-    </div>
     <div class="exp__track" data-h-track>
-      {expItems.map((it) => (
-        <article class="exp__card" data-company={it.company} data-period={it.period} style={`--lvl:${it.level}`}>
-          <div class="exp__period">{it.period}</div>
-          <div class="exp__company">{it.company}</div>
-          <div class="exp__role">{it.role}</div>
-          <div class="exp__report">{it.report}</div>
-          <div class="exp__label">{t.experience.actionLabel}</div>
-          <p class="exp__action">{it.action}</p>
-          {it.facts && (
-            <div class="exp__facts">
-              {it.facts.map((f) => (
-                <div class="exp__fact">
-                  <i class={`ti ${f.icon}`} aria-hidden="true"></i>
-                  <span>{f.text}</span>
-                </div>
-              ))}
-            </div>
+      {t.experience.items.map((it, i) => (
+        <Fragment>
+          <article class="exp__card">
+            <div class="exp__period">{it.period}</div>
+            <div class="exp__company">{it.company}</div>
+            <div class="exp__role">{it.role}</div>
+            <div class="exp__report">{it.report}</div>
+            <div class="exp__label">{t.experience.actionLabel}</div>
+            <p class="exp__action">{it.action}</p>
+            {it.facts && (
+              <div class="exp__facts">
+                {it.facts.map((f) => (
+                  <div class="exp__fact">
+                    <i class={`ti ${f.icon}`} aria-hidden="true"></i>
+                    <span>{f.text}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+            <div class="exp__label">{t.experience.resultsLabel}</div>
+            <ul class="exp__results">
+              {it.results.map((r) => <li>{r}</li>)}
+            </ul>
+          </article>
+          {i < t.experience.items.length - 1 && (
+            <div class="exp__arrow" aria-hidden="true"><i class="ti ti-chevron-right"></i></div>
           )}
-          <div class="exp__label">{t.experience.resultsLabel}</div>
-          <ul class="exp__results">
-            {it.results.map((r) => <li>{r}</li>)}
-          </ul>
-        </article>
+        </Fragment>
       ))}
     </div>
     <div class="exp__hintswipe">{t.ui.scroll} →</div>
