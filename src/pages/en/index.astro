@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import Page from '../../components/Page.astro';
+import { getContent } from '../../lib/content.js';
+
+const lang = 'en';
+const t = getContent(lang);
+---
+<Base
+  lang={lang}
+  t={t}
+  title="Óscar González Pérez · C-Level IT, Digital Transformation & AI"
+  description="C-Level executive with 20+ years in digital transformation, product strategy (CPO) and applied AI. CIO · CPO · Head of IT."
+  altHref="/"
+>
+  <Page lang={lang} />
+</Base>

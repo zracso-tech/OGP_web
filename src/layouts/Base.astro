@@ -1,0 +1,76 @@
+---
+import '../styles/global.css';
+import '../styles/components.css';
+import { PROFILE } from '../lib/content.js';
+
+const { lang, t, title, description, altHref, home = '' } = Astro.props;
+
+// URLs absolutas para SEO (usan `site` de astro.config.mjs)
+const site = Astro.site;
+const canonical = site ? new URL(Astro.url.pathname, site).href : Astro.url.pathname;
+const altAbs = site && altHref ? new URL(altHref, site).href : altHref;
+const esHref = lang === 'es' ? canonical : altAbs;
+const enHref = lang === 'en' ? canonical : altAbs;
+---
+<!doctype html>
+<html lang={lang} class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="es" href={esHref} />
+    <link rel="alternate" hreflang="en" href={enHref} />
+    <link rel="alternate" hreflang="x-default" href={esHref} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#1b2a4a" />
+  </head>
+  <body>
+    <div class="scrollbar" aria-hidden="true"><span data-progress></span></div>
+    <div class="cursor-dot" aria-hidden="true"></div>
+
+    <header class="header" data-header>
+      <div class="header__inner container">
+        <a href={`${home}#inicio`} class="brand" aria-label="Inicio"></a>
+        <nav class="nav" aria-label="Menú principal" data-nav>
+          {t.nav.map((n) => <a href={`${home}#${n.id}`} class="nav__link">{n.label}</a>)}
+        </nav>
+        <div class="header__actions">
+          <a href={altHref} class="lang" aria-label="Switch language">{t.ui.langLabel}</a>
+          <a href={`${home}#contacto`} class="btn btn--navy btn--sm header__cta" data-magnetic>{t.ui.bookMeeting}</a>
+          <button class="burger" aria-label="Menú" aria-expanded="false" data-burger>
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <a href={`${home}#contacto`} class="fab" data-fab data-magnetic>
+      <i class="ti ti-calendar-event" aria-hidden="true"></i>
+      <span>{t.ui.bookMeeting}</span>
+    </a>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p class="footer__copy">© {new Date().getFullYear()} {PROFILE.name}. {t.footer.rights}</p>
+        <p class="footer__made">{t.footer.made}</p>
+      </div>
+    </footer>
+
+    <script>
+      import '../scripts/main.js';
+    </script>
+  </body>
+</html>

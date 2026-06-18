@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import Page from '../components/Page.astro';
+import { getContent } from '../lib/content.js';
+
+const lang = 'es';
+const t = getContent(lang);
+---
+<Base
+  lang={lang}
+  t={t}
+  title="Óscar González Pérez · C-Level IT, Transformación Digital & IA"
+  description="Directivo C-Level con más de 20 años en transformación digital, estrategia de producto (CPO) e IA aplicada al negocio. CIO · CPO · Head of IT."
+  altHref="/en/"
+>
+  <Page lang={lang} />
+</Base>

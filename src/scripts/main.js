@@ -1,0 +1,315 @@
+import Lenis from 'lenis';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const root = document.documentElement;
+root.classList.remove('no-js');
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fine = window.matchMedia('(pointer: fine)').matches;
+
+/* ---------- Smooth scroll (Lenis) ---------- */
+let lenis = null;
+if (!reduce) {
+  lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 0.9 });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((t) => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+  root.classList.add('lenis');
+}
+
+/* ---------- Anchor navigation ---------- */
+document.querySelectorAll('a[href^="#"]').forEach((a) => {
+  a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href');
+    if (id && id.length > 1) {
+      const el = document.querySelector(id);
+      if (el) {
+        e.preventDefault();
+        if (lenis) lenis.scrollTo(el, { offset: -70 });
+        else el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  });
+});
+
+/* ---------- Reveal on scroll ---------- */
+gsap.utils.toArray('[data-reveal]').forEach((el) => {
+  gsap.from(el, {
+    y: 44, opacity: 0, duration: 1, ease: 'power3.out',
+    scrollTrigger: { trigger: el, start: 'top 86%' },
+  });
+});
+
+gsap.utils.toArray('[data-reveal-group]').forEach((group) => {
+  const items = group.querySelectorAll('[data-reveal-item]');
+  gsap.from(items, {
+    y: 40, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.1,
+    scrollTrigger: { trigger: group, start: 'top 82%' },
+  });
+});
+
+/* ---------- Animated counters ---------- */
+gsap.utils.toArray('[data-count]').forEach((el) => {
+  const to = parseFloat(el.dataset.count);
+  const locale = el.dataset.locale || 'es-ES';
+  const obj = { v: 0 };
+  ScrollTrigger.create({
+    trigger: el, start: 'top 92%', once: true,
+    onEnter: () => gsap.to(obj, {
+      v: to, duration: 1.8, ease: 'power2.out',
+      onUpdate: () => { el.textContent = Math.round(obj.v).toLocaleString(locale); },
+    }),
+  });
+});
+
+/* ---------- Hero split text (por palabras, sin cortes a media palabra) ---------- */
+gsap.utils.toArray('[data-split]').forEach((line) => {
+  const text = line.textContent;
+  line.textContent = '';
+  const words = text.split(' ');
+  words.forEach((word, wi) => {
+    if (word.length) {
+      const wspan = document.createElement('span');
+      wspan.className = 'word';
+      [...word].forEach((ch) => {
+        const s = document.createElement('span');
+        s.className = 'char';
+        s.textContent = ch;
+        wspan.appendChild(s);
+      });
+      line.appendChild(wspan);
+    }
+    if (wi < words.length - 1) line.appendChild(document.createTextNode(' '));
+  });
+});
+gsap.from('[data-split] .char', {
+  yPercent: 120, opacity: 0, duration: 0.9, ease: 'power4.out', stagger: 0.025, delay: 0.25,
+});
+
+/* ---------- Magnetic buttons ---------- */
+if (!reduce && fine) {
+  document.querySelectorAll('[data-magnetic]').forEach((btn) => {
+    btn.addEventListener('mousemove', (e) => {
+      const r = btn.getBoundingClientRect();
+      const x = e.clientX - (r.left + r.width / 2);
+      const y = e.clientY - (r.top + r.height / 2);
+      gsap.to(btn, { x: x * 0.4, y: y * 0.5, duration: 0.4, ease: 'power2.out' });
+    });
+    btn.addEventListener('mouseleave', () => {
+      gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' });
+    });
+  });
+}
+
+/* ---------- Accent cursor ---------- */
+const dot = document.querySelector('.cursor-dot');
+if (dot && !reduce && fine) {
+  let mx = 0, my = 0, dx = 0, dy = 0;
+  window.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; dot.style.opacity = '1'; });
+  gsap.ticker.add(() => {
+    dx += (mx - dx) * 0.2; dy += (my - dy) * 0.2;
+    dot.style.transform = `translate(${dx}px, ${dy}px) translate(-50%, -50%)`;
+  });
+  document.querySelectorAll('a, button, [data-magnetic], [data-cursor]').forEach((el) => {
+    el.addEventListener('mouseenter', () => { dot.style.width = '54px'; dot.style.height = '54px'; dot.style.background = 'rgba(201,162,75,0.15)'; });
+    el.addEventListener('mouseleave', () => { dot.style.width = '30px'; dot.style.height = '30px'; dot.style.background = 'transparent'; });
+  });
+}
+
+/* ---------- Header behaviour ---------- */
+const header = document.querySelector('[data-header]');
+if (header) {
+  let last = 0;
+  ScrollTrigger.create({
+    start: 0, end: 'max',
+    onUpdate: (self) => {
+      const y = self.scroll();
+      header.classList.toggle('is-scrolled', y > 100);
+      header.classList.toggle('is-hidden', y > last && y > 320);
+      last = y;
+    },
+  });
+}
+
+/* ---------- Floating CTA ---------- */
+const fab = document.querySelector('[data-fab]');
+if (fab) {
+  ScrollTrigger.create({
+    trigger: '#inicio', start: 'bottom 75%',
+    onEnter: () => fab.classList.add('is-visible'),
+    onLeaveBack: () => fab.classList.remove('is-visible'),
+  });
+}
+
+/* ---------- Language bars ---------- */
+gsap.utils.toArray('[data-bar]').forEach((bar) => {
+  gsap.fromTo(bar, { width: '0%' }, {
+    width: bar.dataset.bar + '%', duration: 1.4, ease: 'power3.out',
+    scrollTrigger: { trigger: bar, start: 'top 92%' },
+  });
+});
+
+/* ---------- Experience horizontal scroll (pinned) + avatar que recorre la trayectoria ---------- */
+const hWrap = document.querySelector('[data-h-wrap]');
+const hTrack = document.querySelector('[data-h-track]');
+if (hWrap && hTrack && !reduce && window.innerWidth > 900) {
+  const distance = () => hTrack.scrollWidth - hWrap.clientWidth;
+  const avatar = hWrap.querySelector('[data-exp-avatar]');
+  const fig = avatar ? avatar.querySelector('.exp__avatar-fig') : null;
+  const cards = gsap.utils.toArray('.exp__card');
+  let lastLevel = -1, curX = 0, curY = 0, init = false;
+
+  gsap.to(hTrack, {
+    x: () => -distance(), ease: 'none',
+    scrollTrigger: {
+      trigger: hWrap, start: 'top top', end: () => '+=' + distance(),
+      pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1,
+      onUpdate: () => {
+        if (!avatar || !cards.length) return;
+        avatar.style.display = 'block';
+        const wrapRect = hWrap.getBoundingClientRect();
+        const centerX = wrapRect.left + wrapRect.width / 2;
+
+        // caja activa = la más centrada en pantalla
+        let best = null, bestRect = null, bestD = Infinity;
+        cards.forEach((c) => {
+          const r = c.getBoundingClientRect();
+          const d = Math.abs((r.left + r.width / 2) - centerX);
+          if (d < bestD) { bestD = d; best = c; bestRect = r; }
+        });
+
+        // se coloca en la esquina superior izquierda de la caja activa
+        const targetX = (bestRect.left - wrapRect.left) + 6;
+        const targetY = (bestRect.top - wrapRect.top) - 92;
+
+        if (!init) { curX = targetX; curY = targetY; init = true; }
+        curX += (targetX - curX) * 0.2;
+        curY += (targetY - curY) * 0.2;
+
+        const lvl = parseFloat(getComputedStyle(best).getPropertyValue('--lvl')) || 0;
+        if (lvl !== lastLevel) {
+          lastLevel = lvl;
+          if (fig) gsap.fromTo(fig, { y: -20 }, { y: 0, duration: 0.5, ease: 'bounce.out' });
+        }
+        avatar.style.left = curX + 'px';
+        avatar.style.top = curY + 'px';
+        avatar.style.transform = 'translateX(-50%)';
+      },
+    },
+  });
+}
+
+/* ---------- Mobile menu ---------- */
+const burger = document.querySelector('[data-burger]');
+const headerEl = document.querySelector('[data-header]');
+if (burger && headerEl) {
+  const close = () => { headerEl.classList.remove('is-open'); burger.setAttribute('aria-expanded', 'false'); };
+  burger.addEventListener('click', () => {
+    const open = headerEl.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.querySelectorAll('[data-nav] a').forEach((a) => a.addEventListener('click', close));
+}
+
+/* ---------- Scroll progress bar ---------- */
+const prog = document.querySelector('[data-progress]');
+if (prog) {
+  ScrollTrigger.create({
+    start: 0, end: 'max',
+    onUpdate: (self) => { prog.style.width = (self.progress * 100).toFixed(2) + '%'; },
+  });
+}
+
+/* ---------- Hero mouse parallax ---------- */
+const heroEl = document.querySelector('#inicio');
+const geoEl = document.querySelector('.hero__geo');
+const photoEl = document.querySelector('.hero__photo');
+if (heroEl && !reduce && fine) {
+  heroEl.addEventListener('mousemove', (e) => {
+    const cx = e.clientX / window.innerWidth - 0.5;
+    const cy = e.clientY / window.innerHeight - 0.5;
+    if (geoEl) gsap.to(geoEl, { x: cx * 44, y: cy * 32, duration: 0.7, ease: 'power2.out' });
+    if (photoEl) gsap.to(photoEl, { x: cx * -24, y: cy * -18, duration: 0.7, ease: 'power2.out' });
+  });
+  heroEl.addEventListener('mouseleave', () => {
+    if (geoEl) gsap.to(geoEl, { x: 0, y: 0, duration: 0.9, ease: 'power2.out' });
+    if (photoEl) gsap.to(photoEl, { x: 0, y: 0, duration: 0.9, ease: 'power2.out' });
+  });
+}
+
+/* ---------- Card tilt 3D ---------- */
+if (!reduce && fine) {
+  document.querySelectorAll('[data-tilt]').forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = `perspective(800px) rotateX(${-py * 6}deg) rotateY(${px * 6}deg) translateY(-6px)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
+}
+
+/* ---------- Parallax decorative shapes ---------- */
+gsap.utils.toArray('[data-parallax]').forEach((el) => {
+  const speed = parseFloat(el.dataset.parallax) || 0.2;
+  gsap.to(el, {
+    yPercent: speed * 100, ease: 'none',
+    scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true },
+  });
+});
+
+/* ---------- Modal: recibir CV ---------- */
+const cvModal = document.querySelector('[data-cv-modal]');
+if (cvModal) {
+  const form = cvModal.querySelector('[data-cv-form]');
+  const msg = cvModal.querySelector('[data-cv-msg]');
+  const openModal = () => {
+    cvModal.hidden = false;
+    document.documentElement.classList.add('modal-open');
+    if (lenis) lenis.stop();
+    const first = cvModal.querySelector('input[name="firstName"]');
+    if (first) setTimeout(() => first.focus(), 50);
+  };
+  const closeModal = () => {
+    cvModal.hidden = true;
+    document.documentElement.classList.remove('modal-open');
+    if (lenis) lenis.start();
+  };
+  document.querySelectorAll('[data-cv-open]').forEach((b) => b.addEventListener('click', openModal));
+  cvModal.querySelectorAll('[data-cv-close]').forEach((b) => b.addEventListener('click', closeModal));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !cvModal.hidden) closeModal(); });
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      msg.className = 'cvform__msg';
+      msg.textContent = form.dataset.sending;
+      btn.disabled = true;
+      try {
+        const data = Object.fromEntries(new FormData(form).entries());
+        data.consent = form.querySelector('[name="consent"]').checked;
+        const res = await fetch(form.dataset.endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const out = await res.json().catch(() => ({}));
+        if (!res.ok || !out.success) throw new Error('request failed');
+        msg.textContent = form.dataset.ok;
+        msg.classList.add('is-ok');
+        form.reset();
+      } catch (err) {
+        msg.textContent = form.dataset.err;
+        msg.classList.add('is-err');
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  }
+}
+
+window.addEventListener('load', () => ScrollTrigger.refresh());

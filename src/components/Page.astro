@@ -1,0 +1,374 @@
+---
+import { getContent, PROFILE } from '../lib/content.js';
+import { getCollection } from 'astro:content';
+const { lang } = Astro.props;
+const t = getContent(lang);
+const loc = lang === 'en' ? 'en-US' : 'es-ES';
+
+// Publicaciones: se leen de los .md en src/content/blog/ (ver content.config.ts)
+const blogBase = lang === 'en' ? '/en/blog' : '/blog';
+const blogPosts = (await getCollection('blog', (p) => p.data.lang === lang && !p.data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Titular: admite el formato nuevo (lines: [{verb, noun}]) o el antiguo (line1/line2/line3a/line3b)
+const splitVN = (s) => {
+  const c = (s || '').replace(/[,.]$/, '').trim();
+  const i = c.indexOf(' ');
+  return i < 0 ? { verb: c, noun: '' } : { verb: c.slice(0, i), noun: c.slice(i + 1) };
+};
+const heroLines = t.hero.lines || [
+  splitVN(t.hero.line1),
+  splitVN(t.hero.line2),
+  { verb: t.hero.line3a, noun: (t.hero.line3b || '').replace(/[,.]$/, '').trim() },
+];
+
+// Formulario de descarga de CV (bilingüe)
+const cvf = lang === 'en'
+  ? { title: 'Get my CV', sub: 'Fill in the form and I’ll email you my CV personally — that way I can verify your address.', first: 'First name', last: 'Last name', company: 'Company', email: 'Work email', consent: 'I agree to be contacted by Óscar González.', submit: 'Request the CV', sending: 'Sending…', ok: 'Thank you! I’ll email you my CV shortly.', err: 'Something went wrong. Please try again in a moment.' }
+  : { title: 'Recibe mi CV', sub: 'Rellena el formulario y te enviaré mi CV personalmente por correo — así verifico que tu dirección es real.', first: 'Nombre', last: 'Apellidos', company: 'Empresa', email: 'Correo profesional', consent: 'Acepto ser contactado por Óscar González.', submit: 'Solicitar el CV', sending: 'Enviando…', ok: '¡Gracias! Te enviaré mi CV a tu correo en breve.', err: 'Algo ha fallado. Inténtalo de nuevo en un momento.' };
+
+// Trayectoria: asigna un "escalón" (level) que desciende cada vez que cambia la empresa
+let _lvl = 0; let _prev = null;
+const expItems = t.experience.items.map((it) => {
+  if (_prev !== null && it.company !== _prev) _lvl++;
+  _prev = it.company;
+  return { ...it, level: _lvl };
+});
+
+const calEmbed = `
+(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", "ogp", { origin: "https://cal.com" });
+Cal.ns.ogp("inline", { elementOrSelector: "#cal-inline", calLink: "${PROFILE.calLink}", layout: "month_view" });
+Cal.ns.ogp("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#1b2a4a" } }, hideEventTypeDetails: false, layout: "month_view" });
+`;
+---
+
+<!-- ============ HERO ============ -->
+<section id="inicio" class="hero">
+  <svg class="hero__geo" viewBox="0 0 620 620" fill="none" aria-hidden="true">
+    <circle cx="250" cy="300" r="210" stroke="#1b2a4a" stroke-width="1" />
+    <circle cx="250" cy="300" r="130" stroke="#c9a24b" stroke-width="1.2" style="animation-delay:.3s" />
+    <path d="M60 560 L250 70 L470 420 L60 420 Z" stroke="#1b2a4a" stroke-width="1" style="animation-delay:.5s" />
+    <path d="M250 70 L420 600" stroke="#c9a24b" stroke-width="1" style="animation-delay:.8s" />
+    <line x1="0" y1="420" x2="600" y2="420" stroke="#1b2a4a" stroke-width="1" style="animation-delay:1s" />
+    <circle cx="250" cy="300" r="7" fill="#c9a24b" stroke="none" style="animation:none" />
+  </svg>
+
+  <div class="container">
+    <div class="hero__grid">
+      <div class="hero__text">
+        <span class="hero__name">Óscar González</span>
+        <p class="hero__role">{t.hero.role}</p>
+        <h1 class="hero__title">
+          {heroLines.map((l) => (
+            <span class="hero__line">
+              <span class="hero__verb" data-split>{l.verb}</span>
+              <span class="hero__noun" data-split>{l.noun}</span>
+            </span>
+          ))}
+        </h1>
+        <div class="hero__rule"></div>
+        <div class="hero__tags">
+          {t.hero.tags.map((tag) => <span class="hero__tag">{tag}</span>)}
+        </div>
+        <div class="hero__cta">
+          <a href="#contacto" class="btn btn--navy" data-magnetic>{t.ui.bookMeeting}</a>
+          <button type="button" class="btn btn--ghost" data-cv-open>{t.ui.downloadCv}</button>
+        </div>
+      </div>
+
+      <div class="hero__photo" data-cursor>
+        <div class="hero__figure hero__figure--a"></div>
+        <div class="hero__figure hero__figure--b"></div>
+      </div>
+    </div>
+
+    <div class="hero__metrics" data-reveal-group>
+      {t.hero.metrics.map((m) => (
+        <div class="metric" data-reveal-item>
+          <div class="metric__num">
+            {typeof m.value === 'number' ? (
+              <>
+                {m.prefix && <span class="u u--pre">{m.prefix}</span>}
+                <span data-count={m.value} data-locale={loc}>0</span>
+                {m.suffix && <span class="u u--suf">{m.suffix}</span>}
+              </>
+            ) : (
+              <span>{m.value}</span>
+            )}
+          </div>
+          <div class="metric__label">{m.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRESENTACIÓN ============ -->
+<section id="presentacion" class="section">
+  <div class="container">
+    <div class="about__grid">
+      <div data-reveal>
+        <span class="eyebrow">{t.nav[1].label}</span>
+        <h2 class="about__title">{t.about.title}</h2>
+      </div>
+      <div class="about__body" data-reveal>
+        {t.about.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LADO PERSONAL ============ -->
+<section id="personal" class="section section--cream2">
+  <div class="container">
+    <div class="personal__grid">
+      <div class="personal__photo" data-cursor data-reveal>
+        <div class="personal__layer personal__layer--a"></div>
+        <div class="personal__layer personal__layer--b"></div>
+        <span class="hero__photohint"><i class="ti ti-hand-move" aria-hidden="true"></i>{t.personal.hint}</span>
+      </div>
+      <div data-reveal>
+        <span class="eyebrow">{t.personal.title}</span>
+        <h2 class="section-title">{t.personal.title}</h2>
+        <p class="lead">{t.personal.lead}</p>
+        <div class="personal__hobbies" data-reveal-group>
+          {t.personal.items.map((h) => (
+            <div class="hobby" data-reveal-item data-tilt>
+              <span class="hobby__sweep" aria-hidden="true"></span>
+              <i class={`ti ${h.icon}`} aria-hidden="true"></i>
+              <div class="hobby__name">{h.name}</div>
+              <div class="hobby__value">{h.value}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPETENCIAS ============ -->
+<section id="competencias" class="section">
+  <svg class="deco deco--comp" data-parallax="0.18" viewBox="0 0 340 340" fill="none" aria-hidden="true">
+    <circle cx="200" cy="140" r="120" stroke="#1b2a4a" stroke-width="1" />
+    <circle cx="200" cy="140" r="70" stroke="#c9a24b" stroke-width="1" />
+    <path d="M40 300 L200 30 L320 240" stroke="#1b2a4a" stroke-width="1" />
+  </svg>
+  <div class="container">
+    <div data-reveal>
+      <span class="eyebrow">{t.nav[2].label}</span>
+      <h2 class="section-title">{t.competencies.title}</h2>
+      <p class="lead">{t.competencies.lead}</p>
+    </div>
+    <div class="comp__grid" data-reveal-group>
+      {t.competencies.items.map((c) => (
+        <article class="comp" data-reveal-item data-tilt>
+          <span class="comp__sweep" aria-hidden="true"></span>
+          <div class="comp__icon"><i class={`ti ${c.icon}`} aria-hidden="true"></i></div>
+          <h3>{c.title}</h3>
+          <p>{c.desc}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCIA (roadmap horizontal) ============ -->
+<section id="experiencia" class="exp">
+  <div class="container exp__intro" data-reveal>
+    <span class="eyebrow">{t.nav[3].label}</span>
+    <h2 class="section-title">{t.experience.title}</h2>
+    <p class="lead">{t.experience.lead}</p>
+  </div>
+  <div class="exp__wrap" data-h-wrap>
+    <div class="exp__avatar" data-exp-avatar aria-hidden="true">
+      <span class="exp__avatar-fig"></span>
+      <span class="exp__avatar-base"></span>
+    </div>
+    <div class="exp__track" data-h-track>
+      {expItems.map((it) => (
+        <article class="exp__card" data-company={it.company} data-period={it.period} style={`--lvl:${it.level}`}>
+          <div class="exp__period">{it.period}</div>
+          <div class="exp__company">{it.company}</div>
+          <div class="exp__role">{it.role}</div>
+          <div class="exp__report">{it.report}</div>
+          <div class="exp__label">{t.experience.actionLabel}</div>
+          <p class="exp__action">{it.action}</p>
+          {it.facts && (
+            <div class="exp__facts">
+              {it.facts.map((f) => (
+                <div class="exp__fact">
+                  <i class={`ti ${f.icon}`} aria-hidden="true"></i>
+                  <span>{f.text}</span>
+                </div>
+              ))}
+            </div>
+          )}
+          <div class="exp__label">{t.experience.resultsLabel}</div>
+          <ul class="exp__results">
+            {it.results.map((r) => <li>{r}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+    <div class="exp__hintswipe">{t.ui.scroll} →</div>
+  </div>
+</section>
+
+<!-- ============ FORMACIÓN ============ -->
+<section id="formacion" class="section section--cream2">
+  <div class="container">
+    <div data-reveal>
+      <span class="eyebrow">{t.nav[4].label}</span>
+      <h2 class="section-title">{t.education.title}</h2>
+      <p class="lead">{t.education.lead}</p>
+    </div>
+    <div class="edu__grid">
+      <div class="edu__block" data-reveal>
+        <h3><i class="ti ti-school" aria-hidden="true"></i>{t.education.studyTitle}</h3>
+        {t.education.study.map((s) => (
+          <div class="edu__item">
+            <div class="edu__name">{s.name}</div>
+            <div class="edu__org">{s.org}</div>
+            {s.note && <div class="edu__note">{s.note}</div>}
+          </div>
+        ))}
+      </div>
+      <div class="edu__block" data-reveal>
+        <h3><i class="ti ti-certificate" aria-hidden="true"></i>{t.education.certsTitle}</h3>
+        <ul class="edu__certs">
+          {t.education.certs.map((c) => <li>{c}</li>)}
+        </ul>
+      </div>
+      <div class="edu__block edu__block--wide" data-reveal>
+        <h3><i class="ti ti-tools" aria-hidden="true"></i>{t.education.toolsTitle}</h3>
+        {typeof t.education.tools[0] === 'string' ? (
+          <div class="tools">
+            {t.education.tools.map((tool) => <span class="tool">{tool}</span>)}
+          </div>
+        ) : (
+          <div class="toolgroups">
+            {t.education.tools.map((g) => (
+              <div class="toolgroup">
+                <span class="toolgroup__label">{g.group}</span>
+                <div class="tools">
+                  {g.items.map((tool) => <span class="tool">{tool}</span>)}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      <div class="edu__block" data-reveal>
+        <h3><i class="ti ti-language" aria-hidden="true"></i>{t.education.langTitle}</h3>
+        {t.education.languages.map((l) => (
+          <div class="lang-bar">
+            <div class="lang-bar__top"><b>{l.name}</b><span>{l.level}</span></div>
+            <div class="lang-bar__track"><div class="lang-bar__fill" data-bar={l.pct}></div></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PUBLICACIONES ============ -->
+<section id="publicaciones" class="section">
+  <div class="container">
+    <div data-reveal>
+      <span class="eyebrow">{t.nav[5].label}</span>
+      <h2 class="section-title">{t.publications.title}</h2>
+      <p class="lead">{t.publications.lead}</p>
+    </div>
+    <div class="posts" data-reveal-group>
+      {blogPosts.map((p) => (
+        <a class="post" data-reveal-item href={`${blogBase}/${p.id.split('/').pop()}/`}>
+          <div class="post__img">
+            {p.data.image && <img src={p.data.image} alt={p.data.title} loading="lazy" />}
+            <span class="post__tag">{p.data.tag}</span>
+          </div>
+          <div class="post__body">
+            <div class="post__date">{p.data.date.toLocaleDateString(loc, { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+            <h3 class="post__title">{p.data.title}</h3>
+            <p class="post__excerpt">{p.data.excerpt}</p>
+            <span class="post__more">{t.publications.readMore} <i class="ti ti-arrow-right" aria-hidden="true"></i></span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO (calendario) ============ -->
+<section id="contacto" class="section exp">
+  <div class="container">
+    <div data-reveal>
+      <span class="eyebrow">{t.nav[6].label}</span>
+      <h2 class="section-title">{t.contact.title}</h2>
+      <p class="lead">{t.contact.lead}</p>
+    </div>
+    <div class="contact__box" data-reveal>
+      <div id="cal-inline" class="contact__cal"></div>
+      <p class="contact__alt">
+        <a href={PROFILE.cal} target="_blank" rel="noopener">{t.contact.cta} <i class="ti ti-external-link" aria-hidden="true"></i></a>
+      </p>
+    </div>
+  </div>
+  <script is:inline set:html={calEmbed}></script>
+</section>
+
+<!-- ============ HABLEMOS ============ -->
+<section id="hablemos" class="section section--cream2">
+  <div class="container">
+    <div data-reveal>
+      <span class="eyebrow">{t.nav[7].label}</span>
+      <h2 class="section-title">{t.talk.title}</h2>
+      <p class="lead">{t.talk.lead}</p>
+    </div>
+    <div class="talk__grid" data-reveal-group>
+      <a class="talk__card" data-reveal-item href={`mailto:${PROFILE.email}`}>
+        <div class="talk__icon"><i class="ti ti-mail" aria-hidden="true"></i></div>
+        <div><div class="talk__label">{t.talk.emailLabel}</div><div class="talk__value">{PROFILE.email}</div></div>
+      </a>
+      <a class="talk__card" data-reveal-item href={`tel:${PROFILE.phoneHref}`}>
+        <div class="talk__icon"><i class="ti ti-phone" aria-hidden="true"></i></div>
+        <div><div class="talk__label">{t.talk.phoneLabel}</div><div class="talk__value">{PROFILE.phone}</div></div>
+      </a>
+      <a class="talk__card" data-reveal-item href={PROFILE.linkedin} target="_blank" rel="noopener">
+        <div class="talk__icon"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></div>
+        <div><div class="talk__label">{t.talk.linkedinLabel}</div><div class="talk__value">linkedin.com/in/oscargonzalezperez</div></div>
+      </a>
+      <div class="talk__card" data-reveal-item>
+        <div class="talk__icon"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
+        <div><div class="talk__label">{t.talk.locationLabel}</div><div class="talk__value">{PROFILE.location}</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MODAL: RECIBIR CV ============ -->
+<div class="cvmodal" data-cv-modal hidden>
+  <div class="cvmodal__overlay" data-cv-close></div>
+  <div class="cvmodal__card" role="dialog" aria-modal="true" aria-labelledby="cvmodal-title">
+    <button type="button" class="cvmodal__x" data-cv-close aria-label="Cerrar"><i class="ti ti-x" aria-hidden="true"></i></button>
+    <div class="cvmodal__icon"><i class="ti ti-file-cv" aria-hidden="true"></i></div>
+    <h3 id="cvmodal-title" class="cvmodal__title">{cvf.title}</h3>
+    <p class="cvmodal__sub">{cvf.sub}</p>
+    <form class="cvform" data-cv-form data-ok={cvf.ok} data-err={cvf.err} data-sending={cvf.sending} data-endpoint="https://api.web3forms.com/submit">
+      <input type="hidden" name="access_key" value={PROFILE.formKey} />
+      <input type="hidden" name="subject" value="📄 Nueva solicitud de CV desde la web" />
+      <input type="hidden" name="from_name" value="Web · Óscar González" />
+      <input type="hidden" name="lang" value={lang} />
+      <input type="checkbox" name="botcheck" class="cvform__hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <div class="cvform__row">
+        <label class="cvform__field"><span>{cvf.first}</span><input type="text" name="firstName" autocomplete="given-name" required /></label>
+        <label class="cvform__field"><span>{cvf.last}</span><input type="text" name="lastName" autocomplete="family-name" required /></label>
+      </div>
+      <label class="cvform__field"><span>{cvf.company}</span><input type="text" name="company" autocomplete="organization" required /></label>
+      <label class="cvform__field"><span>{cvf.email}</span><input type="email" name="email" autocomplete="email" required /></label>
+      <label class="cvform__consent"><input type="checkbox" name="consent" required /><span>{cvf.consent}</span></label>
+      <button type="submit" class="btn btn--gold cvform__submit">{cvf.submit}</button>
+      <p class="cvform__msg" data-cv-msg aria-live="polite"></p>
+    </form>
+  </div>
+</div>

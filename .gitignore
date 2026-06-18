@@ -1,0 +1,25 @@
+# build output
+dist/
+.output/
+.vercel/
+
+# dependencies
+node_modules/
+
+# astro
+.astro/
+
+# logs
+npm-debug.log*
+*.log
+
+# environment
+.env
+.env.production
+
+# os
+.DS_Store
+Thumbs.db
+
+# backup local (el historial de git ya hace de copia de seguridad)
+_backup/

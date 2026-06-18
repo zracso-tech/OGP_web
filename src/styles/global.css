@@ -1,0 +1,114 @@
+/* ============================================================
+   Óscar González — Sistema de diseño
+   Paleta: crema cálido + azul marino + acento oro
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --cream:    #f4f0e5;
+  --cream-2:  #efe9d9;
+  --cream-3:  #e7e0cd;
+  --navy:     #1b2a4a;
+  --navy-2:   #28395c;
+  --navy-soft:#33436a;
+  --gold:     #c9a24b;
+  --gold-2:   #b8923f;
+  --ink:      #1b2a4a;
+  --muted:    #6c6a5b;
+  --muted-2:  #8a8775;
+  --white:    #ffffff;
+
+  --font-head: 'Sora', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --maxw: 1180px;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --ease: cubic-bezier(0.22, 0.8, 0.28, 1);
+
+  --header-h: 76px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+/* Lenis controla el scroll; desactivamos el nativo cuando JS está activo */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 { font-family: var(--font-head); font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+::selection { background: var(--gold); color: var(--navy); }
+
+.container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+.section { padding: 120px 0; position: relative; }
+.section--dark { background: var(--navy); color: var(--cream); }
+.section--cream2 { background: var(--cream-2); }
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold-2);
+  display: inline-flex; align-items: center; gap: 12px;
+  margin-bottom: 22px;
+}
+.eyebrow::before { content: ''; width: 32px; height: 2px; background: var(--gold); display: inline-block; }
+.section--dark .eyebrow { color: var(--gold); }
+
+.section-title { font-size: clamp(32px, 4.5vw, 56px); margin-bottom: 28px; }
+.lead { font-size: clamp(18px, 2vw, 22px); color: var(--muted); max-width: 760px; line-height: 1.6; }
+.section--dark .lead { color: #c3cbdd; }
+
+/* Botones */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-body); font-weight: 600; font-size: 15px;
+  padding: 15px 28px; border-radius: 40px; cursor: pointer;
+  border: 1.5px solid transparent; transition: transform .35s var(--ease), background .25s, color .25s;
+}
+.btn--gold { background: var(--gold); color: var(--navy); }
+.btn--gold:hover { background: var(--gold-2); }
+.btn--navy { background: var(--navy); color: var(--cream); }
+.btn--ghost { background: transparent; border-color: var(--navy); color: var(--navy); }
+.btn--ghost:hover { background: var(--navy); color: var(--cream); }
+.section--dark .btn--ghost { border-color: var(--cream); color: var(--cream); }
+.section--dark .btn--ghost:hover { background: var(--cream); color: var(--navy); }
+
+/* Animaciones de entrada (controladas por GSAP, fallback visible si no hay JS) */
+.no-js [data-reveal] { opacity: 1 !important; transform: none !important; }
+
+/* Cursor de acento (escritorio) */
+.cursor-dot {
+  position: fixed; top: 0; left: 0; width: 30px; height: 30px;
+  border: 1.5px solid var(--gold); border-radius: 50%;
+  pointer-events: none; z-index: 9999; opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: width .25s var(--ease), height .25s var(--ease), background .25s, opacity .3s;
+  mix-blend-mode: normal;
+}
+@media (max-width: 900px) { .cursor-dot { display: none; } }
+
+/* Utilidades */
+.text-gold { color: var(--gold); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+@media (max-width: 720px) {
+  .section { padding: 80px 0; }
+  body { font-size: 16px; }
+}

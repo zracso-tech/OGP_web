@@ -1,0 +1,38 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { getContent } from '../../../lib/content.js';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', (p) => p.data.lang === 'en' && !p.data.draft);
+  return posts.map((entry) => ({
+    params: { slug: entry.id.split('/').pop() },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const lang = 'en';
+const t = getContent(lang);
+const slug = entry.id.split('/').pop();
+const dateStr = entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<Base
+  lang={lang}
+  t={t}
+  home="/en/"
+  title={`${entry.data.title} · Óscar González`}
+  description={entry.data.excerpt}
+  altHref={`/blog/${slug}/`}
+>
+  <article class="article container">
+    <a class="article__back" href="/en/#publicaciones"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back to insights</a>
+    <span class="post__tag article__tag">{entry.data.tag}</span>
+    <h1 class="article__title">{entry.data.title}</h1>
+    <div class="article__date">{dateStr}</div>
+    <div class="article__body">
+      <Content />
+    </div>
+  </article>
+</Base>
