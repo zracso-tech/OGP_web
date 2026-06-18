@@ -354,12 +354,12 @@ Cal.ns.ogp("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#1b
     <div class="cvmodal__icon"><i class="ti ti-file-cv" aria-hidden="true"></i></div>
     <h3 id="cvmodal-title" class="cvmodal__title">{cvf.title}</h3>
     <p class="cvmodal__sub">{cvf.sub}</p>
-    <form class="cvform" data-cv-form data-ok={cvf.ok} data-err={cvf.err} data-sending={cvf.sending} data-endpoint="https://api.web3forms.com/submit">
-      <input type="hidden" name="access_key" value={PROFILE.formKey} />
-      <input type="hidden" name="subject" value="📄 Nueva solicitud de CV desde la web" />
-      <input type="hidden" name="from_name" value="Web · Óscar González" />
+    <form class="cvform" data-cv-form data-ok={cvf.ok} data-err={cvf.err} data-sending={cvf.sending} data-endpoint={`https://formsubmit.co/ajax/${PROFILE.email}`}>
+      <input type="hidden" name="_subject" value="📄 Nueva solicitud de CV desde la web" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="table" />
       <input type="hidden" name="lang" value={lang} />
-      <input type="checkbox" name="botcheck" class="cvform__hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <input type="text" name="_honey" class="cvform__hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <div class="cvform__row">
         <label class="cvform__field"><span>{cvf.first}</span><input type="text" name="firstName" autocomplete="given-name" required /></label>
         <label class="cvform__field"><span>{cvf.last}</span><input type="text" name="lastName" autocomplete="family-name" required /></label>
