@@ -23,3 +23,6 @@ Thumbs.db
 
 # backup local (el historial de git ya hace de copia de seguridad)
 _backup/
+
+# config MCP (puede contener API keys — nunca subir al repo)
+.mcp.json
