@@ -273,6 +273,7 @@ Cal.ns.ogp("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#1b
       <h2 class="section-title">{t.publications.title}</h2>
       <p class="lead">{t.publications.lead}</p>
     </div>
+    {blogPosts.length === 0 && <p class="lead" style="margin-top:40px">{t.publications.soon}</p>}
     <div class="posts" data-reveal-group>
       {blogPosts.map((p) => (
         <a class="post" data-reveal-item href={`${blogBase}/${p.id.split('/').pop()}/`}>

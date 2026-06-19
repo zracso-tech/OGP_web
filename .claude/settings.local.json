@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "mcp__Claude_in_Chrome__computer",
-      "mcp__Claude_in_Chrome__navigate"
+      "mcp__Claude_in_Chrome__navigate",
+      "Bash(rm -f es/ia-palanca-negocio.md es/cio-traductor.md es/plataforma-global.md)",
+      "Bash(rm -f en/ia-palanca-negocio.md en/cio-traductor.md en/plataforma-global.md)",
+      "Bash(ls en/)",
+      "Bash(npm run *)",
+      "Bash(git add *)",
+      "Bash(git commit -q -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }
