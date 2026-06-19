@@ -52,14 +52,10 @@ Cal.ns.ogp("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#1b
         <span class="hero__name">Óscar González</span>
         <p class="hero__role">{t.hero.role}</p>
         <h1 class="hero__title">
-          {heroLines.map((l) => (
-            <span class="hero__line">
-              <span class="hero__verb" data-split>{l.verb}</span>
-              <span class="hero__noun" data-split>{l.noun}</span>
-            </span>
+          {heroLines.map((l, i) => (
+            <span class={`hero__line${i === 1 ? ' hero__line--accent' : ''}`} data-split>{[l.verb, l.noun].filter(Boolean).join(' ')}</span>
           ))}
         </h1>
-        <div class="hero__rule"></div>
         <div class="hero__tags">
           {t.hero.tags.map((tag) => <span class="hero__tag">{tag}</span>)}
         </div>
@@ -74,8 +70,10 @@ Cal.ns.ogp("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#1b
         <div class="hero__figure hero__figure--b"></div>
       </div>
     </div>
+  </div>
 
-    <div class="hero__metrics" data-reveal-group>
+  <div class="hero__band">
+    <div class="container hero__metrics" data-reveal-group>
       {t.hero.metrics.map((m) => (
         <div class="metric" data-reveal-item>
           <div class="metric__num">
@@ -140,12 +138,7 @@ Cal.ns.ogp("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#1b
 </section>
 
 <!-- ============ COMPETENCIAS ============ -->
-<section id="competencias" class="section">
-  <svg class="deco deco--comp" data-parallax="0.18" viewBox="0 0 340 340" fill="none" aria-hidden="true">
-    <circle cx="200" cy="140" r="120" stroke="#1b2a4a" stroke-width="1" />
-    <circle cx="200" cy="140" r="70" stroke="#c9a24b" stroke-width="1" />
-    <path d="M40 300 L200 30 L320 240" stroke="#1b2a4a" stroke-width="1" />
-  </svg>
+<section id="competencias" class="section section--dark">
   <div class="container">
     <div data-reveal>
       <span class="eyebrow">{t.nav[2].label}</span>
@@ -154,8 +147,7 @@ Cal.ns.ogp("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#1b
     </div>
     <div class="comp__grid" data-reveal-group>
       {t.competencies.items.map((c) => (
-        <article class="comp" data-reveal-item data-tilt>
-          <span class="comp__sweep" aria-hidden="true"></span>
+        <article class="comp" data-reveal-item>
           <div class="comp__icon"><i class={`ti ${c.icon}`} aria-hidden="true"></i></div>
           <h3>{c.title}</h3>
           <p>{c.desc}</p>
@@ -312,7 +304,7 @@ Cal.ns.ogp("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#1b
 </section>
 
 <!-- ============ HABLEMOS ============ -->
-<section id="hablemos" class="section section--cream2">
+<section id="hablemos" class="section section--dark">
   <div class="container">
     <div data-reveal>
       <span class="eyebrow">{t.nav[7].label}</span>

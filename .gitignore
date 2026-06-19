@@ -26,3 +26,6 @@ _backup/
 
 # config MCP (puede contener API keys — nunca subir al repo)
 .mcp.json
+
+# referencia de diseño Stitch (no publicar)
+_stitch/

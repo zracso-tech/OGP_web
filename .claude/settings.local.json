@@ -9,7 +9,8 @@
       "Bash(npm run *)",
       "Bash(git add *)",
       "Bash(git commit -q -m ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(printf '\\\\n# referencia de diseño Stitch \\(no publicar\\)\\\\n_stitch/\\\\n')"
     ]
   }
 }
