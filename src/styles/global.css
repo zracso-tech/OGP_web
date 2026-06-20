@@ -104,6 +104,9 @@ img { max-width: 100%; display: block; }
 }
 @media (max-width: 900px) { .cursor-dot { display: none; } }
 
+/* Material Symbols (iconos del rediseño) */
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; line-height: 1; }
+
 /* Utilidades */
 .text-gold { color: var(--gold); }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
