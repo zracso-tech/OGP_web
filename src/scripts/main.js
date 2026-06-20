@@ -34,21 +34,43 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
   });
 });
 
-/* ---------- Reveal on scroll ---------- */
-gsap.utils.toArray('[data-reveal]').forEach((el) => {
-  gsap.from(el, {
-    y: 44, opacity: 0, duration: 1, ease: 'power3.out',
-    scrollTrigger: { trigger: el, start: 'top 86%' },
+/* ---------- Reveal on scroll (IntersectionObserver, robusto) ----------
+   Usamos IntersectionObserver en vez de ScrollTrigger para las apariciones:
+   se dispara de forma fiable aunque el scroll suave de Lenis pase rápido por
+   una sección, y nunca deja un elemento colgado en opacity 0. */
+(() => {
+  const singles = gsap.utils.toArray('[data-reveal]');
+  const items = [];
+  gsap.utils.toArray('[data-reveal-group]').forEach((group) => {
+    group.querySelectorAll('[data-reveal-item]').forEach((el, i) => {
+      // escalonado por posición dentro del grupo
+      el.dataset.revealDelay = (i * 0.08).toFixed(2);
+      items.push(el);
+    });
   });
-});
+  const all = [...singles, ...items];
+  if (!all.length) return;
 
-gsap.utils.toArray('[data-reveal-group]').forEach((group) => {
-  const items = group.querySelectorAll('[data-reveal-item]');
-  gsap.from(items, {
-    y: 40, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.1,
-    scrollTrigger: { trigger: group, start: 'top 82%' },
-  });
-});
+  if (reduce) {
+    gsap.set(all, { opacity: 1, y: 0 });
+    return;
+  }
+
+  gsap.set(all, { opacity: 0, y: 40 });
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      gsap.to(el, {
+        opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+        delay: parseFloat(el.dataset.revealDelay || 0),
+      });
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+  all.forEach((el) => io.observe(el));
+})();
 
 /* ---------- Animated counters ---------- */
 gsap.utils.toArray('[data-count]').forEach((el) => {
