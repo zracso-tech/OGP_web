@@ -1,0 +1,463 @@
+{
+  "nav": [
+    {
+      "id": "inicio",
+      "label": "Inicio"
+    },
+    {
+      "id": "presentacion",
+      "label": "Presentación"
+    },
+    {
+      "id": "competencias",
+      "label": "Competencias"
+    },
+    {
+      "id": "experiencia",
+      "label": "Experiencia"
+    },
+    {
+      "id": "formacion",
+      "label": "Formación"
+    },
+    {
+      "id": "publicaciones",
+      "label": "Publicaciones"
+    },
+    {
+      "id": "contacto",
+      "label": "Agenda"
+    },
+    {
+      "id": "hablemos",
+      "label": "Contacto"
+    }
+  ],
+  "ui": {
+    "langLabel": "EN",
+    "bookMeeting": "Agenda una reunión",
+    "downloadCv": "Descargar CV",
+    "scroll": "Desliza",
+    "hoverHint": "Mueve el cursor"
+  },
+  "hero": {
+    "line1": "Liderando proyectos,",
+    "line2": "Alineando estrategias,",
+    "line3a": "Multiplicando",
+    "line3b": " resultados.",
+    "role": "C-Level · Chief AI & Digital Officer · Transformación Digital · Estrategia de Producto & Negocio",
+    "tags": [
+      "C-Level",
+      "IT Management",
+      "Business Development",
+      "Digital Transformation",
+      "AI Business Oriented",
+      "Product"
+    ],
+    "metrics": [
+      {
+        "value": 10,
+        "suffix": "Años",
+        "label": "Consulting IT"
+      },
+      {
+        "value": 20,
+        "suffix": "Años",
+        "label": "Liderando Transformacion"
+      },
+      {
+        "value": 11,
+        "suffix": "Países",
+        "label": "Experiencia Internacional"
+      }
+    ]
+  },
+  "about": {
+    "title": "Más de 20 años convirtiendo la tecnología en resultados de negocio.",
+    "paragraphs": [
+      "Directivo con más de 25 años de experiencia liderando transformación digital, desarrollo de producto y crecimiento de negocio en compañías multinacionales y entornos complejos. ",
+      "Experiencia en desarrollo de negocio y diseño e implementación de soluciones corporativas globales  con despliegues internacionales. ",
+      "Creación y dirección de unidades de negocio, producto, estrategia de transformacion, IA & DATA oriented strategy, gestion de stakeholders de C-suite, equipos multidisciplinares y P&L. "
+    ]
+  },
+  "personal": {
+    "title": "Más allá del despacho",
+    "lead": "En cada uno de nuestros ambitos somos partes de un todo mucho mas enriquecedor. Quién soy fuera de la oficina define cómo lidero dentro de ella.",
+    "hint": "Mueve el cursor sobre la imagen",
+    "items": [
+      {
+        "icon": "ti-karate",
+        "name": "Taekwondo",
+        "value": "Autodisciplina y mejora continua"
+      },
+      {
+        "icon": "ti-scuba-mask",
+        "name": "Buceo",
+        "value": "Confianza en el equipo y compañerismo"
+      },
+      {
+        "icon": "ti-barbell",
+        "name": "CrossFit",
+        "value": "Resiliencia y rendimiento bajo presión"
+      },
+      {
+        "icon": "ti-guitar-pick",
+        "name": "Guitarra",
+        "value": "Creatividad y armonía de equipos"
+      }
+    ]
+  },
+  "competencies": {
+    "title": "Competencias clave",
+    "lead": "Donde aporto valor diferencial a una organización.",
+    "items": [
+      {
+        "icon": "ti-rocket",
+        "title": "Transformación digital",
+        "desc": "Diseño y ejecución de estrategias que integran negocio, tecnología y datos a escala global."
+      },
+      {
+        "icon": "ti-cpu",
+        "title": "IA aplicada al negocio",
+        "desc": "LLM & IA Generativa orientadas a eficiencia operativa, decisión en tiempo real con impacto medible."
+      },
+      {
+        "icon": "ti-target-arrow",
+        "title": "Estrategia de producto ",
+        "desc": "Definición de visión, roadmap y evolución de producto orientada a cliente y a nuevas fuentes de ingresos."
+      },
+      {
+        "icon": "ti-world",
+        "title": "Business Development",
+        "desc": "Crecimiento y expansión internacional (LATAM, EMEA, USA), apertura de mercados y nuevas líneas de negocio."
+      },
+      {
+        "icon": "ti-users-group",
+        "title": "Liderazgo de equipos",
+        "desc": "Dirección de equipos multidisciplinares y gestión del cambio en organizaciones complejas."
+      },
+      {
+        "icon": "ti-chart-arrows-vertical",
+        "title": "Visión data-driven",
+        "desc": "Modelos predictivos y KPIs como motor de decisión, eficiencia y ventaja competitiva."
+      }
+    ]
+  },
+  "experience": {
+    "title": "Trayectoria",
+    "lead": "Un recorrido de impacto: del consulting a la dirección C-Level. Desliza para recorrerlo.",
+    "actionLabel": "Qué hice",
+    "resultsLabel": "Logros",
+    "items": [
+      {
+        "period": "2019 — 2025",
+        "company": "Prosegur",
+        "role": "Digital Transformation & Enterprise Platform Executive",
+        "report": "Reporte: Director Global de Transformación",
+        "action": "Lideré la transformación digital de la organización mediante una plataforma corporativa global que integra datos, procesos y capacidades en tiempo real. Dirigí iniciativas de IA, LLM, analítica y automatización con impacto directo en eficiencia y escalabilidad.",
+        "facts": [
+          {
+            "icon": "ti-target-arrow",
+            "text": "Sas Product Customer Oriented"
+          },
+          {
+            "icon": "ti-users-group",
+            "text": "30 recursos"
+          },
+          {
+            "icon": "ti-world",
+            "text": "11 Paises 3 Regiones"
+          }
+        ],
+        "results": [
+          "Despliegue global: 11 países, +3.000 usuarios activos, +16.000 centros integrados",
+          "+70.000 operativos monitorizados con IA en Help Operation",
+          "Modelo predictivo de decisión en tiempo real gestionado vía KPIs",
+          "Solución diferenciadora con alto valor añadido vs. estándar del sector"
+        ]
+      },
+      {
+        "period": "2010 — 2019",
+        "company": "Prosegur",
+        "role": "Product, Business & International Growth Executive",
+        "report": "Reporte: Dirección General",
+        "action": "Desarrollé y escalé una unidad de negocio combinando estrategia de producto, desarrollo comercial y expansión internacional, transformando el modelo hacia un enfoque cliente, eficiencia y nuevas fuentes de ingresos mediante tecnología.",
+        "facts": [
+          {
+            "icon": "ti-target-arrow",
+            "text": "Creación Nacional & Roll-Out Internacional"
+          },
+          {
+            "icon": "ti-users-group",
+            "text": "15 recursos"
+          },
+          {
+            "icon": "ti-world",
+            "text": "9 Paises 2 Regiones"
+          }
+        ],
+        "results": [
+          "Crecimiento de ingresos: +10%",
+          "Expansión internacional: LATAM y EMEA",
+          "Creación de nuevas líneas de negocio y servicios tecnológicos",
+          "Reposicionamiento completo de la unidad con integración tecnológica"
+        ]
+      },
+      {
+        "period": "2008 — 2010",
+        "company": "Prosegur",
+        "role": "Business Development & International Expansion Leader",
+        "report": "Reporte: Dirección General",
+        "action": "Creé y lancé la División Aeroportuaria desde cero, liderando el modelo operativo, la estrategia comercial y la estructura inicial de la unidad de negocio, con enfoque en escalabilidad y cumplimiento normativo.",
+        "facts": [
+          {
+            "icon": "ti-target-arrow",
+            "text": "Creacion del modelo de Seguridad Aeroportuaria"
+          },
+          {
+            "icon": "ti-users-group",
+            "text": "10 recursos"
+          },
+          {
+            "icon": "ti-world",
+            "text": "Internacional EMEA"
+          }
+        ],
+        "results": [
+          "Generación de 32M€ en volumen de negocio (fase inicial)",
+          "Expansión internacional: Portugal",
+          "Posicionamiento de la división como referente sectorial",
+          "Globalización exitosa del modelo operativo y comercial"
+        ]
+      },
+      {
+        "period": "2006 — 2008",
+        "company": "Prosegur",
+        "role": "Business Development Transformation & CRM Strategy",
+        "report": "Reporte: Director Comercial",
+        "action": "Diseñé e implanté un nuevo modelo comercial basado en una visión 360º del cliente, transformando el área hacia un enfoque data-driven y customer-centric.",
+        "facts": [
+          {
+            "icon": "ti-target-arrow",
+            "text": "Redifinición y tecnificación del modelo comercial"
+          },
+          {
+            "icon": "ti-users-group",
+            "text": "5 recursos"
+          },
+          {
+            "icon": "ti-world",
+            "text": "Nacional"
+          }
+        ],
+        "results": [
+          "Implantación de Salesforce CRM a nivel nacional (España)",
+          "Modelo Customer 360 para grandes cuentas",
+          "Estrategias de cross-selling y up-selling basadas en datos",
+          "Adopción completa del CRM por la fuerza de ventas"
+        ]
+      },
+      {
+        "period": "2004 — 2006",
+        "company": "Evendor Engineering",
+        "role": "Head SAP Division",
+        "report": "Reporte: Director General",
+        "action": "Creé e integré una nueva división dentro del grupo corporativo, definiendo un modelo operativo escalable y alineando procesos y equipos para fortalecer la propuesta de valor al cliente.",
+        "facts": [
+          {
+            "icon": "ti-target-arrow",
+            "text": "SAP Consulting and Merge Company"
+          },
+          {
+            "icon": "ti-users-group",
+            "text": "40 recursos"
+          },
+          {
+            "icon": "ti-world",
+            "text": "Nacional"
+          }
+        ],
+        "results": [
+          "Traslado de unidad manteniendo el 100% de la cartera de clientes",
+          "Retención y crecimiento del equipo de consultoría",
+          "Integración completa en la estructura corporativa"
+        ]
+      },
+      {
+        "period": "2001 — 2004",
+        "company": "Software Injob",
+        "role": "CEO & Founder",
+        "report": "Fundador",
+        "action": "Fundé y dirigí una consultora especializada en soluciones técnicas SAP para clientes corporativos, liderando la estrategia global, el desarrollo de negocio y las operaciones desde cero.",
+        "facts": [
+          {
+            "icon": "ti-target-arrow",
+            "text": "CO-Fundacion y dirección de compañía"
+          },
+          {
+            "icon": "ti-users-group",
+            "text": "30 recursos"
+          },
+          {
+            "icon": "ti-world",
+            "text": "Nacional"
+          }
+        ],
+        "results": [
+          "Escalado de 0 a 30 profesionales",
+          "Facturación: ~1M€",
+          "Proveedor SAP de referencia para clientes corporativos",
+          "Gestión del ciclo completo: ventas, delivery y operaciones"
+        ]
+      },
+      {
+        "period": "2000 — 2001",
+        "company": "Arthur Andersen",
+        "role": "Project Manager",
+        "report": "Reporte: Gerencia SAP",
+        "action": "Gestioné proyectos tecnológicos complejos de implementación ERP/SAP para clientes corporativos: Telefónica, Grupo BASF, Sogecable y MediaSet.",
+        "facts": [
+          {
+            "icon": "ti-target-arrow",
+            "text": "Proyectos SAP "
+          },
+          {
+            "icon": "ti-users-group",
+            "text": "15 recursos"
+          },
+          {
+            "icon": "ti-world",
+            "text": "Nacional"
+          }
+        ],
+        "results": [
+          "Entrega exitosa de soluciones ERP/SAP cumpliendo objetivos",
+          "Gestión simultánea de múltiples proyectos enterprise",
+          "Consolidación de relaciones con cuentas estratégicas"
+        ]
+      }
+    ]
+  },
+  "education": {
+    "title": "Formación y certificaciones",
+    "lead": "Aprendizaje continuo, con foco actual en Inteligencia Artificial aplicada.",
+    "studyTitle": "Formación",
+    "study": [
+      {
+        "name": "2025-2026: Rethinking Business With AI",
+        "org": "ESADE",
+        "note": "Estrategia empresarial en IA · Gobierno · ROI · LLM · Agentic AI (actualmente)"
+      },
+      {
+        "name": "2010  Dirección Comercial y Marketing",
+        "org": "Máster IDE-CESEM"
+      },
+      {
+        "name": "2005: Dirección Empresarial",
+        "org": "Máster Cámara de Comercio de Madrid"
+      },
+      {
+        "name": "1998: Business Information Technology",
+        "org": "Diplomado ESI"
+      }
+    ],
+    "certsTitle": "Certificaciones",
+    "certs": [
+      "2026: Inteligencia Artificial en la Gestión de Proyectos (Alison, 2026)",
+      "2022 Certified SAFe® 5 — AGILE Product Owner (2022)",
+      "2000: SAP R/3 Development"
+    ],
+    "toolsTitle": "Herramientas & tecnología",
+    "tools": [
+      {
+        "group": "Gestión & Colaboración",
+        "items": [
+          "Microsoft Office Suite",
+          "Dynamics 365",
+          "Microsoft Project",
+          "Salesforce CRM",
+          "SAP (R/3 & BO)",
+          "Power BI",
+          "Jira",
+          "Confluence",
+          "Asana"
+        ]
+      },
+      {
+        "group": "IA & Automatización",
+        "items": [
+          "ChatGPT",
+          "Gemini",
+          "Claude",
+          "CoWork",
+          "Claude Code",
+          "Copilot",
+          "Grok",
+          "Perplexity",
+          "NotebookLM",
+          "Loveable",
+          "Supabase",
+          "Github",
+          "Vercel",
+          "Make",
+          "N8N"
+        ]
+      },
+      {
+        "group": "Marketing & CRM",
+        "items": [
+          "Salesforce",
+          "Mailchimp",
+          "Canva"
+        ]
+      },
+      {
+        "group": "Metodologías",
+        "items": [
+          "Agile",
+          "SAFe",
+          "Scrum",
+          "OKR",
+          "KPI Management",
+          "Change Management"
+        ]
+      }
+    ],
+    "langTitle": "Idiomas",
+    "languages": [
+      {
+        "name": "Español",
+        "level": "Nativo",
+        "pct": 100
+      },
+      {
+        "name": "Inglés",
+        "level": "Competencia profesional (B2)",
+        "pct": 75
+      }
+    ]
+  },
+  "publications": {
+    "title": "Publicaciones",
+    "lead": "Reflexiones sobre liderazgo IT, transformación digital e Inteligencia Artificial.",
+    "readMore": "Leer artículo",
+    "soon": "Próximamente más artículos."
+  },
+  "contact": {
+    "title": "Agenda una reunión",
+    "lead": "Reserva directamente un hueco en mi agenda. Recibirás confirmación por email y la cita se añadirá a tu calendario.",
+    "cta": "Abrir calendario"
+  },
+  "talk": {
+    "title": "Contacto",
+    "lead": "¿Tienes un reto donde la tecnología pueda multiplicar resultados? Conectemos.",
+    "emailLabel": "Email",
+    "phoneLabel": "Teléfono",
+    "linkedinLabel": "LinkedIn",
+    "locationLabel": "Ubicación"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "made": "Diseñado y desarrollado a medida."
+  }
+}
