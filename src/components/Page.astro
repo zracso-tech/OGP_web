@@ -68,10 +68,10 @@ Cal.ns.ogp("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#1b
           <button type="button" data-cv-open class="border border-secondary text-secondary px-9 py-4 font-label-caps text-label-caps hover:bg-secondary/10 transition-colors uppercase tracking-widest">{t.ui.downloadCv}</button>
         </div>
       </div>
-      <div class="md:col-span-4 relative" data-cursor>
-        <div class="aspect-[4/5] w-full bg-surface-container/60 relative overflow-hidden group">
-          <img src="/images/oscar-pro.png" alt="Óscar González Pérez" class="w-full h-full object-contain object-bottom grayscale group-hover:grayscale-0 transition-all duration-700" />
-          <div class="absolute inset-0 border border-secondary/30 m-4 pointer-events-none"></div>
+      <div class="md:col-span-4 relative" data-cursor data-hero-photo>
+        <div class="aspect-[4/5] w-full bg-surface-container/60 relative overflow-hidden group" data-hero-frame>
+          <img src="/images/oscar-pro.png" alt="Óscar González Pérez" class="w-full h-full object-contain object-bottom grayscale group-hover:grayscale-0 transition-all duration-700" data-hero-img />
+          <div class="absolute inset-0 border border-secondary/30 m-4 pointer-events-none" data-hero-border></div>
         </div>
       </div>
     </div>

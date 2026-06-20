@@ -110,6 +110,37 @@ gsap.from('[data-split] .char', {
   yPercent: 120, opacity: 0, duration: 0.9, ease: 'power4.out', stagger: 0.025, delay: 0.25,
 });
 
+/* ---------- Hero: entrada de la foto al cargar ---------- */
+(() => {
+  const frame = document.querySelector('[data-hero-frame]');
+  const img = document.querySelector('[data-hero-img]');
+  const border = document.querySelector('[data-hero-border]');
+  if (!frame || !img) return;
+  if (reduce) return; // sin animación si el usuario prefiere movimiento reducido
+
+  const tl = gsap.timeline({ delay: 0.35, defaults: { ease: 'power3.out' } });
+  // el marco sube y aparece
+  tl.from(frame, { y: 54, opacity: 0, duration: 1.1, ease: 'power4.out' }, 0)
+    // "settle" de zoom suave de la imagen
+    .from(img, { scale: 1.16, duration: 1.6, ease: 'power3.out' }, 0)
+    // el marco dorado aparece un poco después
+    .from(border, { opacity: 0, scale: 1.05, transformOrigin: 'center', duration: 0.9 }, 0.55);
+
+  // parallax sutil al mover el cursor (solo puntero fino)
+  if (fine) {
+    const wrap = document.querySelector('[data-hero-photo]');
+    wrap?.addEventListener('mousemove', (e) => {
+      const r = wrap.getBoundingClientRect();
+      const x = (e.clientX - (r.left + r.width / 2)) / r.width;
+      const y = (e.clientY - (r.top + r.height / 2)) / r.height;
+      gsap.to(img, { x: x * 14, y: y * 14, duration: 0.6, ease: 'power2.out' });
+    });
+    wrap?.addEventListener('mouseleave', () => {
+      gsap.to(img, { x: 0, y: 0, duration: 0.8, ease: 'power3.out' });
+    });
+  }
+})();
+
 /* ---------- Magnetic buttons ---------- */
 if (!reduce && fine) {
   document.querySelectorAll('[data-magnetic]').forEach((btn) => {
