@@ -327,7 +327,7 @@ Cal.ns.ogp("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#1b
       <a class="p-8 border border-on-primary/10 hover:border-secondary-fixed transition-colors flex flex-col gap-4" href={`mailto:${PROFILE.email}`} data-reveal-item>
         <span class="material-symbols-outlined text-secondary-fixed text-3xl">mail</span>
         <span class="font-label-caps text-label-caps uppercase text-on-primary-container">{t.talk.emailLabel}</span>
-        <span class="font-headline-md text-on-primary break-words">{PROFILE.email}</span>
+        <span class="text-on-primary text-base break-all leading-snug">{PROFILE.email}</span>
       </a>
       <a class="p-8 border border-on-primary/10 hover:border-secondary-fixed transition-colors flex flex-col gap-4" href={`tel:${PROFILE.phoneHref}`} data-reveal-item>
         <span class="material-symbols-outlined text-secondary-fixed text-3xl">call</span>
@@ -337,7 +337,7 @@ Cal.ns.ogp("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#1b
       <a class="p-8 border border-on-primary/10 hover:border-secondary-fixed transition-colors flex flex-col gap-4" href={PROFILE.linkedin} target="_blank" rel="noopener" data-reveal-item>
         <span class="material-symbols-outlined text-secondary-fixed text-3xl">share</span>
         <span class="font-label-caps text-label-caps uppercase text-on-primary-container">{t.talk.linkedinLabel}</span>
-        <span class="font-headline-md text-on-primary break-words">/in/oscargonzalezperez</span>
+        <span class="font-headline-md text-on-primary inline-flex items-center gap-1">{lang === 'en' ? 'Visit profile' : 'Accede aquí'}<span class="material-symbols-outlined text-secondary-fixed text-xl">arrow_outward</span></span>
       </a>
       <div class="p-8 border border-on-primary/10 flex flex-col gap-4" data-reveal-item>
         <span class="material-symbols-outlined text-secondary-fixed text-3xl">location_city</span>
