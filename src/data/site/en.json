@@ -45,13 +45,14 @@
     "line2": "Aligning strategies,",
     "line3a": "Multiplying",
     "line3b": " results.",
-    "role": "C-Level Leader · Product, Business Development & Digital Transformation",
+    "role": "C-Level · Chief AI & Digital Officer · Digital Transformation · Product & Business Strategy",
     "tags": [
-      "C-Level · IT Management",
-      "CPO · Product",
+      "C-Level",
+      "IT Management",
       "Business Development",
       "Digital Transformation",
-      "AI Business Oriented"
+      "AI Business Oriented",
+      "Product"
     ],
     "metrics": [
       {
@@ -74,14 +75,14 @@
   "about": {
     "title": "Over 20 years turning technology into business results.",
     "paragraphs": [
-      "C-Level executive with more than 20 years of experience in management, business development, digital transformation and product (CPO) across consulting, technology and security, within both multinationals and SMEs.",
-      "Specialised in designing business development strategies and leading projects and multidisciplinary teams. Goal-oriented, with strong analytical, negotiation and leadership skills.",
-      "Today my focus is on applying Artificial Intelligence as a real lever for efficiency, scalability and decision-making, aligning business, technology and data."
+      "Executive with more than 25 years of experience leading digital transformation, product development and business growth in multinational companies and complex environments. ",
+      "Experience in business development and in the design and implementation of global corporate solutions with international rollouts. ",
+      "Creation and leadership of business units, product, transformation strategy, AI & data-oriented strategy, C-suite stakeholder management, multidisciplinary teams and P&L. "
     ]
   },
   "personal": {
     "title": "Beyond the office",
-    "lead": "Who I am outside the office shapes how I lead within it.",
+    "lead": "In every area of our lives we are part of a much richer whole. Who I am outside the office defines how I lead within it.",
     "hint": "Move your cursor over the image",
     "items": [
       {
@@ -92,7 +93,7 @@
       {
         "icon": "ti-scuba-mask",
         "name": "Diving",
-        "value": "Trust in the team and teamwork"
+        "value": "Trust in the team and camaraderie"
       },
       {
         "icon": "ti-barbell",
@@ -108,27 +109,27 @@
   },
   "competencies": {
     "title": "Core expertise",
-    "lead": "Where I add differential value to an organisation.",
+    "lead": "Where I bring differential value to an organisation.",
     "items": [
       {
         "icon": "ti-rocket",
         "title": "Digital transformation",
-        "desc": "Design and execution of platform strategies integrating business, technology and data at global scale."
+        "desc": "Design and execution of strategies that integrate business, technology and data at global scale."
       },
       {
         "icon": "ti-cpu",
-        "title": "AI for business",
-        "desc": "AI and LLMs focused on operational efficiency, automation and real-time decision-making with measurable impact."
+        "title": "AI applied to business",
+        "desc": "LLMs & generative AI focused on operational efficiency and real-time decision-making with measurable impact."
       },
       {
         "icon": "ti-target-arrow",
-        "title": "Product strategy (CPO)",
-        "desc": "Vision, roadmap and product evolution oriented to the customer and new revenue streams."
+        "title": "Product strategy ",
+        "desc": "Definition of vision, roadmap and product evolution oriented to the customer and to new revenue streams."
       },
       {
         "icon": "ti-world",
-        "title": "Business development",
-        "desc": "Growth and international expansion (LATAM, EMEA), new markets and new business lines."
+        "title": "Business Development",
+        "desc": "Growth and international expansion (LATAM, EMEA, USA), opening new markets and new business lines."
       },
       {
         "icon": "ti-users-group",
@@ -138,13 +139,13 @@
       {
         "icon": "ti-chart-arrows-vertical",
         "title": "Data-driven vision",
-        "desc": "Predictive models and KPIs as the engine of decision, efficiency and competitive advantage."
+        "desc": "Predictive models and KPIs as the engine of decision-making, efficiency and competitive advantage."
       }
     ]
   },
   "experience": {
     "title": "Career path",
-    "lead": "A track record of impact: from consulting to C-Level leadership. Scroll to explore.",
+    "lead": "A journey of impact: from consulting to C-Level leadership. Scroll to explore.",
     "actionLabel": "What I did",
     "resultsLabel": "Achievements",
     "items": [
@@ -153,26 +154,26 @@
         "company": "Prosegur",
         "role": "Digital Transformation & Enterprise Platform Executive",
         "report": "Reporting to: Global Transformation Director",
-        "action": "Led the digital transformation of the organisation through a global corporate platform integrating data, processes and capabilities in real time. Drove AI, LLM, analytics and automation initiatives with direct impact on efficiency and scalability.",
+        "action": "Led the organisation's digital transformation through a global corporate platform that integrates data, processes and capabilities in real time. Directed AI, LLM, analytics and automation initiatives with direct impact on efficiency and scalability.",
         "facts": [
           {
             "icon": "ti-target-arrow",
-            "text": "we will put this phrase, I will change it later"
+            "text": "SaaS Product, Customer Oriented"
           },
           {
             "icon": "ti-users-group",
-            "text": "25 resources"
+            "text": "30 resources"
           },
           {
             "icon": "ti-world",
-            "text": "National"
+            "text": "11 Countries, 3 Regions"
           }
         ],
         "results": [
           "Global rollout: 11 countries, +3,000 active users, +16,000 integrated sites",
           "+70,000 operations monitored with AI in Help Operation",
           "Real-time predictive decision model managed via KPIs",
-          "Differentiating solution with high added value vs. industry standard"
+          "Differentiating solution with high added value vs. the industry standard"
         ]
       },
       {
@@ -180,19 +181,19 @@
         "company": "Prosegur",
         "role": "Product, Business & International Growth Executive",
         "report": "Reporting to: General Management",
-        "action": "Developed and scaled a business unit combining product strategy, commercial development and international expansion, shifting the model towards customer focus, efficiency and new technology-driven revenue streams.",
+        "action": "Developed and scaled a business unit combining product strategy, commercial development and international expansion, shifting the model towards a customer focus, efficiency and new technology-driven revenue streams.",
         "facts": [
           {
             "icon": "ti-target-arrow",
-            "text": "we will put this phrase, I will change it later"
+            "text": "National creation & international roll-out"
           },
           {
             "icon": "ti-users-group",
-            "text": "25 resources"
+            "text": "15 resources"
           },
           {
             "icon": "ti-world",
-            "text": "National"
+            "text": "9 Countries, 2 Regions"
           }
         ],
         "results": [
@@ -207,19 +208,19 @@
         "company": "Prosegur",
         "role": "Business Development & International Expansion Leader",
         "report": "Reporting to: General Management",
-        "action": "Created and launched the Airport Division from scratch, leading the operating model, commercial strategy and initial structure of the business unit, focused on scalability and regulatory compliance.",
+        "action": "Created and launched the Airport Division from scratch, leading the operating model, commercial strategy and initial structure of the business unit, with a focus on scalability and regulatory compliance.",
         "facts": [
           {
             "icon": "ti-target-arrow",
-            "text": "we will put this phrase, I will change it later"
+            "text": "Creation of the airport security model"
           },
           {
             "icon": "ti-users-group",
-            "text": "25 resources"
+            "text": "10 resources"
           },
           {
             "icon": "ti-world",
-            "text": "National"
+            "text": "International EMEA"
           }
         ],
         "results": [
@@ -238,11 +239,11 @@
         "facts": [
           {
             "icon": "ti-target-arrow",
-            "text": "we will put this phrase, I will change it later"
+            "text": "Redefinition and digitalisation of the commercial model"
           },
           {
             "icon": "ti-users-group",
-            "text": "25 resources"
+            "text": "5 resources"
           },
           {
             "icon": "ti-world",
@@ -259,17 +260,17 @@
       {
         "period": "2004 — 2006",
         "company": "Evendor Engineering",
-        "role": "Head of SAP Division",
+        "role": "Head SAP Division",
         "report": "Reporting to: General Manager",
-        "action": "Created and integrated a new division within the corporate group, defining a scalable operating model and aligning processes and teams to strengthen the value proposition.",
+        "action": "Created and integrated a new division within the corporate group, defining a scalable operating model and aligning processes and teams to strengthen the customer value proposition.",
         "facts": [
           {
             "icon": "ti-target-arrow",
-            "text": "we will put this phrase, I will change it later"
+            "text": "SAP consulting & company merger"
           },
           {
             "icon": "ti-users-group",
-            "text": "25 resources"
+            "text": "40 resources"
           },
           {
             "icon": "ti-world",
@@ -291,11 +292,11 @@
         "facts": [
           {
             "icon": "ti-target-arrow",
-            "text": "we will put this phrase, I will change it later"
+            "text": "Co-founding and company leadership"
           },
           {
             "icon": "ti-users-group",
-            "text": "25 resources"
+            "text": "30 resources"
           },
           {
             "icon": "ti-world",
@@ -318,11 +319,11 @@
         "facts": [
           {
             "icon": "ti-target-arrow",
-            "text": "we will put this phrase, I will change it later"
+            "text": "SAP projects "
           },
           {
             "icon": "ti-users-group",
-            "text": "25 resources"
+            "text": "15 resources"
           },
           {
             "icon": "ti-world",
@@ -330,7 +331,7 @@
           }
         ],
         "results": [
-          "Successful delivery of ERP/SAP solutions meeting project goals",
+          "Successful delivery of ERP/SAP solutions meeting objectives",
           "Simultaneous management of multiple enterprise projects",
           "Consolidation of strategic account relationships"
         ]
@@ -343,30 +344,28 @@
     "studyTitle": "Education",
     "study": [
       {
-        "name": "Rethinking Business With AI",
+        "name": "2025-2026: Rethinking Business With AI",
         "org": "ESADE",
-        "note": "Business strategy in AI · Governance · ROI · LLM · Agentic AI (ongoing)"
+        "note": "Business strategy in AI · Governance · ROI · LLM · Agentic AI (current)"
       },
       {
-        "name": "Commercial Management & Marketing",
-        "org": "Master IDE-CESEM"
+        "name": "2010: Commercial Management & Marketing",
+        "org": "Master, IDE-CESEM"
       },
       {
-        "name": "Business Management",
+        "name": "2005: Business Management",
         "org": "Master, Madrid Chamber of Commerce"
       },
       {
-        "name": "Business Information Technology",
+        "name": "1998: Business Information Technology",
         "org": "Diploma, ESI"
       }
     ],
     "certsTitle": "Certifications",
     "certs": [
-      "Artificial Intelligence in Project Management (Alison, 2026)",
-      "Certified SAFe® 5 — Agile Product Owner (2022)",
-      "Scrum Product Owner (Tecnofor Agile)",
-      "SAP R/3 Development",
-      "Project management with AI"
+      "2026: Artificial Intelligence in Project Management (Alison, 2026)",
+      "2022: Certified SAFe® 5 — AGILE Product Owner (2022)",
+      "2000: SAP R/3 Development"
     ],
     "toolsTitle": "Tools & technology",
     "tools": [
@@ -440,18 +439,18 @@
   },
   "publications": {
     "title": "Insights",
-    "lead": "Thoughts on IT leadership, digital transformation and Artificial Intelligence.",
+    "lead": "Reflections on IT leadership, digital transformation and Artificial Intelligence.",
     "readMore": "Read article",
     "soon": "More articles coming soon."
   },
   "contact": {
     "title": "Book a meeting",
-    "lead": "Pick a slot directly in my calendar. You will receive an email confirmation and the meeting will be added to your calendar.",
+    "lead": "Book a slot directly in my calendar. You'll receive an email confirmation and the meeting will be added to your calendar.",
     "cta": "Open calendar"
   },
   "talk": {
     "title": "Let's talk",
-    "lead": "Have a challenge where technology can multiply results? Let’s connect.",
+    "lead": "Do you have a challenge where technology can multiply results? Let's connect.",
     "emailLabel": "Email",
     "phoneLabel": "Phone",
     "linkedinLabel": "LinkedIn",
