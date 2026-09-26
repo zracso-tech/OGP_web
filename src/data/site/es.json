@@ -41,10 +41,10 @@
     "hoverHint": "Mueve el cursor"
   },
   "hero": {
-    "line1": "Liderando proyectos,",
-    "line2": "Alineando estrategias,",
-    "line3a": "Multiplicando",
-    "line3b": " resultados.",
+    "line1": "Transformando empresas,",
+    "line2": "con IA aplicada",
+    "line3a": "y resultados",
+    "line3b": " medibles.",
     "role": "C-Level · Chief AI & Digital Officer · Transformación Digital · Estrategia de Producto & Negocio",
     "tags": [
       "C-Level",
@@ -73,7 +73,7 @@
     ]
   },
   "about": {
-    "title": "Más de 20 años convirtiendo la tecnología en resultados de negocio.",
+    "title": "Más de 25 años convirtiendo la tecnología en resultados de negocio.",
     "paragraphs": [
       "Directivo con más de 25 años de experiencia liderando transformación digital, desarrollo de producto y crecimiento de negocio en compañías multinacionales y entornos complejos. ",
       "Experiencia en desarrollo de negocio y diseño e implementación de soluciones corporativas globales  con despliegues internacionales. ",
@@ -149,6 +149,33 @@
     "actionLabel": "Qué hice",
     "resultsLabel": "Logros",
     "items": [
+      {
+        "period": "2026 — Actualidad",
+        "company": "Solvo Global España",
+        "role": "CTO, Director de IT & IA",
+        "report": "Reporte: CEO",
+        "action": "Dirijo la estrategia de IT e IA y lanzo la nueva línea de servicios tecnológicos del grupo. Parto de la necesidad del cliente, analizo las causas origen y propongo soluciones tecnológicas de alto impacto con ROI real.",
+        "facts": [
+          {
+            "icon": "ti-rocket",
+            "text": "Nueva línea de negocio IT & IA"
+          },
+          {
+            "icon": "ti-target-arrow",
+            "text": "Enterprise / Grandes Cuentas"
+          },
+          {
+            "icon": "ti-world",
+            "text": "España · Europa"
+          }
+        ],
+        "results": [
+          "Lanzamiento de la línea de servicios IT & IA del grupo",
+          "Tres líneas de producto: talento remoto desde el sur de Europa, servicios IT 360 y soluciones basadas en IA",
+          "Estructuración del modelo operativo y comercial de la nueva unidad",
+          "Enfoque consultivo orientado a ROI medible"
+        ]
+      },
       {
         "period": "2019 — 2025",
         "company": "Prosegur",
@@ -363,66 +390,11 @@
     ],
     "certsTitle": "Certificaciones",
     "certs": [
-      "2026: Inteligencia Artificial en la Gestión de Proyectos (Alison, 2026)",
       "2022 Certified SAFe® 5 — AGILE Product Owner (2022)",
       "2000: SAP R/3 Development"
     ],
     "toolsTitle": "Herramientas & tecnología",
-    "tools": [
-      {
-        "group": "Gestión & Colaboración",
-        "items": [
-          "Microsoft Office Suite",
-          "Dynamics 365",
-          "Microsoft Project",
-          "Salesforce CRM",
-          "SAP (R/3 & BO)",
-          "Power BI",
-          "Jira",
-          "Confluence",
-          "Asana"
-        ]
-      },
-      {
-        "group": "IA & Automatización",
-        "items": [
-          "ChatGPT",
-          "Gemini",
-          "Claude",
-          "CoWork",
-          "Claude Code",
-          "Copilot",
-          "Grok",
-          "Perplexity",
-          "NotebookLM",
-          "Loveable",
-          "Supabase",
-          "Github",
-          "Vercel",
-          "Make",
-          "N8N"
-        ]
-      },
-      {
-        "group": "Marketing & CRM",
-        "items": [
-          "Salesforce",
-          "Mailchimp",
-          "Canva"
-        ]
-      },
-      {
-        "group": "Metodologías",
-        "items": [
-          "Agile",
-          "SAFe",
-          "Scrum",
-          "OKR",
-          "KPI Management",
-          "Change Management"
-        ]
-      }
-    ],
+    "tools": [],
     "langTitle": "Idiomas",
     "languages": [
       {
@@ -432,7 +404,7 @@
       },
       {
         "name": "Inglés",
-        "level": "Competencia profesional (B2)",
+        "level": "Competencia profesional",
         "pct": 75
       }
     ]
@@ -452,7 +424,6 @@
     "title": "Contacto",
     "lead": "¿Tienes un reto donde la tecnología pueda multiplicar resultados? Conectemos.",
     "emailLabel": "Email",
-    "phoneLabel": "Teléfono",
     "linkedinLabel": "LinkedIn",
     "locationLabel": "Ubicación"
   },
