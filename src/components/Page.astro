@@ -235,7 +235,7 @@ Cal.ns.ogp("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#1b
         </div>
       </div>
       <div class="flex flex-col gap-12" data-reveal>
-        <div class="flex flex-col gap-7">
+        {t.education.tools?.length > 0 && (<div class="flex flex-col gap-7">
           <h3 class="font-headline-md text-headline-md text-primary flex items-center gap-3"><span class="material-symbols-outlined">handyman</span>{t.education.toolsTitle}</h3>
           <div class="flex flex-col gap-5">
             {toolsGrouped ? t.education.tools.map((g) => (
@@ -251,7 +251,7 @@ Cal.ns.ogp("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#1b
               </div>
             )}
           </div>
-        </div>
+        </div>)}
         <div class="flex flex-col gap-7">
           <h3 class="font-headline-md text-headline-md text-primary flex items-center gap-3"><span class="material-symbols-outlined">language</span>{t.education.langTitle}</h3>
           <div class="flex flex-col gap-6">
@@ -322,16 +322,11 @@ Cal.ns.ogp("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#1b
       <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-primary">{t.talk.title}</h2>
       <p class="text-on-primary-container font-body-lg text-body-lg max-w-2xl mt-2">{t.talk.lead}</p>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" data-reveal-group>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6" data-reveal-group>
       <a class="p-8 border border-on-primary/10 hover:border-secondary-fixed transition-colors flex flex-col gap-4" href={`mailto:${PROFILE.email}`} data-reveal-item>
         <span class="material-symbols-outlined text-secondary-fixed text-3xl">mail</span>
         <span class="font-label-caps text-label-caps uppercase text-on-primary-container">{t.talk.emailLabel}</span>
         <span class="text-on-primary text-sm leading-snug">{PROFILE.email.split('@')[0]}@<wbr />{PROFILE.email.split('@')[1]}</span>
-      </a>
-      <a class="p-8 border border-on-primary/10 hover:border-secondary-fixed transition-colors flex flex-col gap-4" href={`tel:${PROFILE.phoneHref}`} data-reveal-item>
-        <span class="material-symbols-outlined text-secondary-fixed text-3xl">call</span>
-        <span class="font-label-caps text-label-caps uppercase text-on-primary-container">{t.talk.phoneLabel}</span>
-        <span class="font-headline-md text-on-primary">{PROFILE.phone}</span>
       </a>
       <a class="p-8 border border-on-primary/10 hover:border-secondary-fixed transition-colors flex flex-col gap-4" href={PROFILE.linkedin} target="_blank" rel="noopener" data-reveal-item>
         <span class="material-symbols-outlined text-secondary-fixed text-3xl">share</span>
