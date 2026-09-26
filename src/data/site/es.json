@@ -371,6 +371,10 @@
     "studyTitle": "Formación",
     "study": [
       {
+        "name": "2026: Ecosistema Claude en Intensivo",
+        "org": "ESIC"
+      },
+      {
         "name": "2025-2026: Rethinking Business With AI",
         "org": "ESADE",
         "note": "Estrategia empresarial en IA · Gobierno · ROI · LLM · Agentic AI (actualmente)"
